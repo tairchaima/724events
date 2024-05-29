@@ -58,12 +58,5 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   children: PropTypes.node,
 };
-Button.defaultProps = {
-  disabled: false,
-  onClick: () => null,
-  type: BUTTON_TYPES.DEFAULT,
-  title: "",
-  children: null
-}
 
 export default Button;
