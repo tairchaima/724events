@@ -13,19 +13,26 @@ const Select = ({
   label,
   type = "normal",
 }) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null); // init à null (Toutes)
   const [collapsed, setCollapsed] = useState(true);
-  const changeValue = (newValue) => {
-    onChange();
-    setValue(newValue);
-    setCollapsed(newValue);
+  const toggleCollapsed = () => { // ajout pour le click handler
+    setCollapsed(!collapsed);
   };
+  const changeValue = (newValue) => {
+    onChange(newValue);
+    setValue(newValue);
+    setCollapsed(true); // correction : collapse après tout changement
+  };
+
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
       {label && <div className="label">{label}</div>}
       <div className="Select">
         <ul>
-          <li className={collapsed ? "SelectTitle--show" : "SelectTitle--hide"}>
+          <li
+            className={collapsed ? "SelectTitle--show" : "SelectTitle--hide"}
+            onClick={toggleCollapsed}
+          >
             {value || (!titleEmpty && "Toutes")}
           </li>
           {!collapsed && (
@@ -54,10 +61,8 @@ const Select = ({
           type="button"
           data-testid="collapse-button-testid"
           className={collapsed ? "open" : "close"}
-          onClick={(e) => {
-            e.preventDefault();
-            setCollapsed(!collapsed);
-          }}
+          onClick={toggleCollapsed}
+          aria-label={collapsed ? "Expand" : "Collapse"}
         >
           <Arrow />
         </button>
@@ -88,14 +93,5 @@ Select.propTypes = {
   titleEmpty: PropTypes.bool,
   label: PropTypes.string,
   type: PropTypes.string,
-}
-
-Select.defaultProps = {
-  onChange: () => null,
-  titleEmpty: false,
-  label: "",
-  type: "normal",
-  name: "select",
-}
-
+};
 export default Select;

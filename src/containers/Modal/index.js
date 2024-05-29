@@ -3,8 +3,9 @@ import { useState } from "react";
 import Icon from "../../components/Icon";
 import "./style.scss";
 
-const Modal = ({ opened, Content, children }) => {
+const ModalEvent = ({ opened, Content, children }) => {
   const [isOpened, setIsOpened] = useState(opened);
+
   return (
     <>
       {children({ isOpened, setIsOpened })}
@@ -16,6 +17,7 @@ const Modal = ({ opened, Content, children }) => {
               type="button"
               data-testid="close-modal"
               onClick={() => setIsOpened(false)}
+              aria-label="Fermer la fenêtre modale"
             >
               <Icon name="close" />
             </button>
@@ -26,14 +28,10 @@ const Modal = ({ opened, Content, children }) => {
   );
 };
 
-Modal.defaultProps = {
-  opened: false,
-}
-
-Modal.propTypes = {
-  opened: PropTypes.bool,
+ModalEvent.propTypes = {
+  opened: PropTypes.bool.isRequired,
   Content: PropTypes.node.isRequired,
   children: PropTypes.func.isRequired,
-}
+};
 
-export default Modal;
+export default ModalEvent;
