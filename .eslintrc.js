@@ -9,7 +9,12 @@ module.exports = {
     'airbnb',
     'prettier',
   ],
+  parser: '@babel/eslint-parser',
   parserOptions: {
+    requireConfigFile: false,
+    babelOptions: {
+      presets: ['@babel/preset-env', '@babel/preset-react'],
+    },
     ecmaFeatures: {
       jsx: true,
     },
@@ -21,8 +26,8 @@ module.exports = {
   ],
   rules: {
     'react/react-in-jsx-scope': 'off',
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/jsx-props-no-spreading": 'off',
-    "react/function-component-definition": 'off'
+    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
+    'react/jsx-props-no-spreading': 'off',
+    'react/function-component-definition': 'off'
   },
 };

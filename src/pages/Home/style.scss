@@ -5,6 +5,7 @@ main {
   flex-direction: column;
   align-items: center;
   background-color: $primary;
+  overflow: hidden;
 }
 
 .ServicesContainer {
@@ -84,7 +85,8 @@ main {
   }
 }
 .ListContainer {
-  width: 90%;
+  width: 100%;
+  // width: 90%;
   max-width: 1200px;
   display: flex;
   justify-content: space-around;

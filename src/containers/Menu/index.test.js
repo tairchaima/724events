@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Menu from "./index";
 
 describe("When Menu is created", () => {
@@ -21,6 +21,33 @@ describe("When Menu is created", () => {
         })
       );
       expect(window.document.location.hash).toEqual("#contact");
+    });
+
+    it('changes document location hash when Nos services link is clicked', async () => {
+      render(<Menu />);
+      const nosServicesLink = screen.getByText('Nos services');
+      fireEvent.click(nosServicesLink);
+      await waitFor(() => {
+        expect(window.location.hash).toEqual('#nos-services');
+      });
+    });
+    
+    it('changes document location hash when Nos services link is clicked', async () => {
+      render(<Menu />);
+      const nosServicesLink = screen.getByText('Nos réalisations');
+      fireEvent.click(nosServicesLink);
+      await waitFor(() => {
+        expect(window.location.hash).toEqual('#nos-realisations');
+      });
+    });
+
+    it('changes document location hash when Nos services link is clicked', async () => {
+      render(<Menu />);
+      const nosServicesLink = screen.getByText('Notre équipe');
+      fireEvent.click(nosServicesLink);
+      await waitFor(() => {
+        expect(window.location.hash).toEqual('#notre-equipe');
+      });
     });
   });
 });
